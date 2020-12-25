@@ -5,6 +5,6 @@ namespace Calculator.API.Service.Interfaces
     public interface ICalculator
     {
         InterestResponse InterestResult(InterestRequest interestRequest);
-        InvestmentResponse InvestmentResult(InvestmentRequest investmentRequest);
+        InvestmentResponse InvestmentMonthly(InvestmentRequest investmentRequest);
     }
 }

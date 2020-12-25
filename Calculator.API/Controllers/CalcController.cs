@@ -26,7 +26,7 @@ namespace Calculator.API.Controllers
         [HttpPost("investment")]
         public IActionResult CalculateInvestment(InvestmentRequest request)
         {
-            var result = _calculator.InvestmentResult(request);
+            var result = _calculator.InvestmentMonthly(request);
 
             return Ok(result);
         }

@@ -1,7 +1,7 @@
-using System;
 using Calculator.API.Models;
 using Calculator.API.Service.Interfaces;
 using Calculator.API.Models.Enums;
+using Calculator.API.Helper;
 
 namespace Calculator.API.Service
 {
@@ -21,22 +21,21 @@ namespace Calculator.API.Service
 
             var endPrincipal = request.StartPrincipal + request.ContributionValue;
 
-            var endBalance = endPrincipal;
-            
+            decimal endBalance = 0;
             decimal interest = 0;
             decimal tax = 0;
 
             // calculate interest rate
-            request.InterestRate = CalculateCompound(request.InterestRate, request.CompoundPeriod);
+            request.InterestRate = HelperMethods.CalculateCompound(request.InterestRate, request.CompoundPeriod);
 
             for (int i = 0; i < request.PeriodYears; i++)
             {
                 // interest
-                interest = InterestValue(request.InterestRate, startBalance);
+                interest = HelperMethods.InterestValue(request.InterestRate, startBalance);
                 response.TotalInterest += interest;
 
                 // tax
-                tax = InterestValue(request.TaxRate, interest);
+                tax = HelperMethods.InterestValue(request.TaxRate, interest);
                 response.TotalTax += tax;
 
                 // end balance
@@ -62,7 +61,7 @@ namespace Calculator.API.Service
             }
 
             // inflation adjustment
-            response.InflationAdjustment = ValueAfterInflation(request.InflationRate, endBalance, request.PeriodYears);
+            response.InflationAdjustment = HelperMethods.ValueAfterInflation(request.InflationRate, endBalance, request.PeriodYears);
 
             response.EndBalance = endBalance;
             response.TotalContribution = endPrincipal - request.ContributionValue;
@@ -71,70 +70,49 @@ namespace Calculator.API.Service
             return response;
         }
 
-        private decimal InterestValue(double interest, decimal value)
+        public InvestmentResponse InvestmentMonthly(InvestmentRequest request)
         {
-            if (interest == 0 || value == 0) return 0;
+            if (request.PeriodYears == 0) return null;
 
-            var result = (Convert.ToDecimal(interest) * value) / 100;
+            var response = new InvestmentResponse();
 
-            return Decimal.Round(result, 2);
-        }
+            var interestRate = request.InterestRate == 0 ? 0 : request.InterestRate / 12;
+            decimal interest = 0;
 
-        private decimal ValueAfterInflation(double inflation, decimal value, int years)
-        {
-            if (inflation == 0) return value;
-
-            var inflationDecimal = Convert.ToDecimal(inflation);
-
-            for (int i = 0; i < years; i++)
+            var startPrincipal = request.StartPrincipal;
+            var startBalance = startPrincipal;
+            var endPrincipal = startPrincipal + request.ContributionValue;
+            decimal endBalance = 0;
+            
+            for (int i = 0; i < request.PeriodYears * 12; i++)
             {
-                value = value / ((100 + inflationDecimal) / 100);
+                // interest
+                interest = HelperMethods.InterestValue(interestRate, startBalance);
+                response.TotalInterest += interest;
+
+                endBalance = startBalance + request.ContributionValue + interest;
+
+                var interestSchedule = new InterestSchedule(
+                    startBalance,
+                    endBalance,
+                    startPrincipal,
+                    endPrincipal,
+                    interest,
+                    0                   
+                );
+
+                response.InterestSchedule.Add(interestSchedule);
+
+                startBalance = endBalance;
+                startPrincipal += request.ContributionValue;
+                endPrincipal += request.ContributionValue;
             }
 
-            return Decimal.Round(value, 2);
-        }
+            response.EndBalance = endBalance;
+            response.TotalContribution = startPrincipal - request.ContributionValue;
+            response.StartPrincipal = request.StartPrincipal;
 
-        private double CalculateCompound(double interest, CompoundPeriod period)
-        {
-            if (interest == 0) return 0;
-
-            double compound;
-
-            switch (period)
-            {
-                case CompoundPeriod.Annually:
-                    compound = interest;
-                    break;
-                case CompoundPeriod.Semestrial:
-                    // interest splitted in 2
-                    compound = interest + 0.25;
-                    break;
-                case CompoundPeriod.Quarterly:
-                    // interest splitted in 4
-                    compound = interest + 0.381;
-                    break;
-                case CompoundPeriod.Monthly:
-                    // interest splitted in 12
-                    compound = interest + 0.471;
-                    break;
-                case CompoundPeriod.Semimonthly:
-                    // interest splitted in 26
-                    compound = interest + 0.494;
-                    break;
-                case CompoundPeriod.Weekly:
-                    // interest splitted in 52
-                    compound = interest + 0.506;
-                    break;
-                default:
-                    return interest;
-            }
-
-            return compound;
-        }
-
-        public InvestmentResponse InvestmentResult(InvestmentRequest investmentRequest)
-        {
-            throw new NotImplementedException();
+            return response;
         }
     }
 }
