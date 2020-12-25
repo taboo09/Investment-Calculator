@@ -16,7 +16,7 @@ namespace Calculator.API.Helper
 
         public static decimal ValueAfterInflation(double inflation, decimal value, int years)
         {
-            if (inflation == 0) return value;
+            if (inflation == 0 || years == 0) return value;
 
             var inflationDecimal = Convert.ToDecimal(inflation);
 
