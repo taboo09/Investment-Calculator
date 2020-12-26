@@ -9,9 +9,9 @@ namespace Calculator.API.Service
     {
         public InterestResponse InterestResult(InterestRequest request)
         {
-            if (request.PeriodYears == 0) return null;
-
             var response = new InterestResponse();
+
+            if (request.PeriodYears == 0) return response;
 
             var startPrincipal = request.InvestmentPeriod == Period.End ?
                 request.StartPrincipal :
@@ -72,9 +72,9 @@ namespace Calculator.API.Service
 
         public InvestmentResponse InvestmentMonthly(InvestmentRequest request)
         {
-            if (request.PeriodYears == 0) return null;
-
             var response = new InvestmentResponse();
+
+            if (request.PeriodYears == 0) return response;
 
             var interestRate = request.InterestRate == 0 ? 0 : request.InterestRate / 12;
             decimal interest = 0;
@@ -109,7 +109,7 @@ namespace Calculator.API.Service
             }
 
             response.EndBalance = endBalance;
-            response.TotalContribution = startPrincipal - request.ContributionValue;
+            response.TotalContribution = request.ContributionValue * request.PeriodYears * 12;
             response.StartPrincipal = request.StartPrincipal;
 
             return response;
