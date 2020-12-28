@@ -1,0 +1,18 @@
+.footer{
+    text-align: center;
+    padding: 10px 0;
+
+    mat-divider{
+        border-top-color: #999999;
+        margin: 0 auto 10px auto;
+        width: 90%;
+    }
+
+    a{
+        margin-right: 10px;
+
+        &:hover{
+            color: #999999;
+        }
+    }
+}
