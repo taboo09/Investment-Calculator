@@ -37,6 +37,20 @@ namespace Calculator.API
                 });
 
             services.AddScoped<ICalculator, InterestCalculator>();
+
+            AddCors(services);
+        }
+
+        private void AddCors(IServiceCollection services)
+        {
+            services.AddCors(opt => 
+            {
+                opt.AddPolicy("CorsPolicy", policy => 
+                {
+                    // origin needs to be changed
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200").AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +66,8 @@ namespace Calculator.API
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

@@ -1,0 +1,16 @@
+.alert {
+    font-size: .8em;
+
+    hr {
+        width:80%;
+        margin-left: 0;
+    }
+    .dispose {
+        float: right;
+
+        i {
+            font-size: 1.05em;
+            cursor: pointer;
+        }
+    }
+}

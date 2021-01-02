@@ -1,0 +1,9 @@
+<div *ngIf="message" class="alert alert-{{type}}">
+    <h4 class="alert-heading">
+        {{ displayNotificationType(message.Notification) }}
+        <span class="dispose" (click)="resetMessage()"><i class="fas fa-times-circle"></i></span>
+    </h4>
+    <p *ngIf="message.ErrorStatus">Status: {{ message.ErrorStatus }}</p>
+    <hr>
+    <p>{{ message.MessageInfo }}</p>
+</div>

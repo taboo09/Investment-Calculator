@@ -11,10 +11,6 @@ export class AppService {
   constructor(private http: HttpClient) { }
   
   getRresults(type: string, payload: any){
-
-    console.log(payload);
-
-    
     return this.http.post<any>(this.url + type, payload);
   }
 }

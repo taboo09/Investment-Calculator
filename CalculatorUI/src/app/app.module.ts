@@ -9,6 +9,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component' 
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptorProvider } from './core/interceptors';
+import { NotificationModule } from './shared/modules/notification/notification.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatTooltipModule,
     MatDividerModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NotificationModule
   ],
-  providers: [],
+  providers: [
+    ErrorInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
