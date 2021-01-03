@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
     exports:[
@@ -12,7 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
         MatInputModule,
         MatButtonModule,
         ReactiveFormsModule,
-        MatRadioModule
+        MatRadioModule,
+        MatCardModule
     ]
   })
   export class FormMatSharedModule { }

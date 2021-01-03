@@ -1,0 +1,21 @@
+/* mat card custom style */
+
+mat-card.custom-style{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
+
+    mat-card-header{
+        background: linear-gradient(180deg, rgba(178,178,180,1) 0%, rgba(218,218,219,1) 39%, rgba(255,255,255,1) 91%);
+        color: #de6006;
+        border-radius: 5px;
+
+        mat-card-title{
+            font-weight: 800;
+            font-size: 1.4em;
+            padding-top: 5px;
+        }
+    }
+    mat-card-content{
+        padding: 0 10px;
+    }
+}
