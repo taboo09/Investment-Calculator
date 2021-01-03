@@ -1,0 +1,97 @@
+$darkColor: rgb(28, 40, 51);
+$lightRed: rgb( 230, 126, 34 );
+$skyColor: rgb(93, 173, 226);
+
+.title-container {
+  width: 100%;
+
+  .title-wrapper {
+    border: 5px solid transparent;
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    h3 {
+      padding: 0px 20px;
+      margin: 15px 0;
+    }
+
+    .title1 {
+      text-transform: uppercase;
+      font-size: 1.15em;
+    }
+    .title2 {
+      text-transform: lowercase;
+      font-size: 1em;
+      margin-left: 0.8rem;
+    }
+  }
+
+  .border-style {
+    background-image: linear-gradient(white, white),
+      linear-gradient(270deg, $darkColor, $lightRed 50%, $skyColor 100%);
+
+    background-repeat: no-repeat;
+    background-origin: padding-box, border-box;
+    text-align: center;
+  }
+}
+
+@mixin gradient-text($gradient, $bg: "light") {
+  @supports (mix-blend-mode: lighten) {
+    display: inline-block;
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      background: unquote($gradient);
+      pointer-events: none;
+    }
+
+    @if ($bg == "light") {
+      color: #000;
+      background: #fff;
+      mix-blend-mode: multiply;
+
+      &::before {
+        mix-blend-mode: screen;
+      }
+    } @else {
+      color: #fff;
+      background: #000;
+      mix-blend-mode: lighten;
+
+      &::before {
+        mix-blend-mode: multiply;
+      }
+    }
+  }
+}
+
+.gradient-right {
+  @include gradient-text(
+    "linear-gradient(to right, rgb(93, 173, 226),  rgb( 230, 126, 34), rgb(28, 40, 51) )",
+    "light"
+  );
+}
+
+.gradient-left {
+    @include gradient-text(
+      "linear-gradient(to left, rgb(93, 173, 226),  rgb( 230, 126, 34), rgb(28, 40, 51) )",
+      "light"
+    );
+  }
+
+.gradient-circle {
+  @include gradient-text(
+    "radial-gradient(circle, rgb(205, 92, 92), rgb( 52, 73, 94), rgb( 151, 154, 154), rgb( 93, 173, 226), #000000)",
+    "light"
+  );
+}

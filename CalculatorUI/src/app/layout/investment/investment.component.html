@@ -1,1 +1,12 @@
-<p>investment works!</p>
+<div class="container-investment">
+    <div class="investment-title">
+        <app-title [title]="'investment calculator'"></app-title>
+    </div>
+    <div class="investment-form">
+        <app-form [investment]="newInvestment" (formValues)="getFormValues($event)"></app-form>
+    </div>
+    
+    <div class="results">
+        <app-result-numbers [type]="'investment'"></app-result-numbers>
+    </div>
+</div>

@@ -16,16 +16,6 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMessage();
-
-    // test
-    // this.message = {
-    //   MessageInfo: 'info messgae just a test',
-    //   ErrorStatus: undefined,
-    //   Notification: NotificationType.Message
-    // }
-
-    // if (this.message)
-    //     this.type = this.message.Notification === NotificationType.Error ? 'danger' : 'warning';
   }
 
   getMessage(){

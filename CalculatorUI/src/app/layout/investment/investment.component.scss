@@ -1,0 +1,39 @@
+.container-investment{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .investment-title{
+        grid-column: 1 / 4;
+        margin-bottom: 1.5rem;
+    }
+
+    .investment-form{
+        grid-column: 1 / 2;
+        background-color: bisque;
+        padding: 5px;
+        grid-row: 2;
+    }
+
+    .results{
+        grid-column: 2 / 4;
+        background-color: burlywood;
+    }
+
+    @media only screen and (max-width: 650px){
+        .investment-form{
+            grid-row: 1;
+        }
+        .results{
+            grid-column: 1 / 4;
+        }
+        .investment-title{
+            grid-column: 2 / 4;
+            grid-row: 1;
+
+            ::ng-deep .title-container .title-wrapper{
+                max-width: 180px !important;
+            }
+        }
+    }
+}
+
