@@ -1,0 +1,43 @@
+<mat-card class="custom-style">
+    <mat-card-header>
+        <mat-card-title>Results</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="results-content">
+            <div class="results-data">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>End Balance</th>
+                            <td>{{ results.endBalance | number : '1.2-2' }}</td>
+                        </tr>
+                        <tr *ngIf="type === 'interest'">
+                            <th>Inflation Adjustment</th>
+                            <td>{{ results.inflationAdjustment | number : '1.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Starting Amount</th>
+                            <td>{{ results.startPrincipal | number : '1.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Contributions</th>
+                            <td>{{ results.totalContribution | number : '1.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Interest</th>
+                            <td>{{ results.totalInterest | number : '1.2-2' }}</td>
+                        </tr>
+                        <tr *ngIf="type === 'interest'">
+                            <th>Total Tax</th>
+                            <td>{{ results.totalTax | number : '1.2-2' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="results-pie">
+                <app-pie-chart *ngIf="results.endBalance !== 0" [principal]="results.startPrincipal + results.totalContribution" [interest]="results.totalInterest"></app-pie-chart>
+            </div>
+        </div>
+        
+    </mat-card-content>
+</mat-card>

@@ -1,9 +1,11 @@
 import { InterestSchedule } from "./InterestSchedule";
 
 export class ResponseBase{
-    EndBalance!: number;
-    StartPrincipal!: number;
-    TotalContribution!: number;
-    TotalInterest!: number;
-    InterestSchedule: InterestSchedule[] = [];
+    endBalance!: number;
+    startPrincipal!: number;
+    totalContribution!: number;
+    totalInterest!: number;
+    inflationAdjustment!: number;
+    totalTax!: number;
+    interestSchedule: InterestSchedule[] = [];
 }

@@ -5,8 +5,7 @@
     <div class="investment-form">
         <app-form [investment]="newInvestment" (formValues)="getFormValues($event)"></app-form>
     </div>
-    
     <div class="results">
-        <app-result-numbers [type]="'investment'"></app-result-numbers>
+        <app-result-numbers [type]="type" [results]="results"></app-result-numbers>
     </div>
 </div>
