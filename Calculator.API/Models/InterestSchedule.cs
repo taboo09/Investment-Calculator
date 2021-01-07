@@ -8,6 +8,7 @@ namespace Calculator.API.Models
             decimal startPrincipal,
             decimal endPrincipal,
             decimal interest,
+            decimal totalInterest,
             decimal tax)
         {
             StartBalance = startBalance;
@@ -15,6 +16,7 @@ namespace Calculator.API.Models
             StartPrincipal = startPrincipal;
             EndPrincipal = endPrincipal;
             Interest = interest;
+            TotalInterest = totalInterest;
             Tax = tax;
         }
         
@@ -23,6 +25,7 @@ namespace Calculator.API.Models
         public decimal StartPrincipal { get; set; }
         public decimal EndPrincipal { get; set; }
         public decimal Interest { get; set; }
+        public decimal TotalInterest { get; set; }
         public decimal Tax { get; set; }
     }
 }

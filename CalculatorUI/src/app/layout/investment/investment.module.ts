@@ -7,6 +7,7 @@ import { FormMatSharedModule } from '../core/form-mat-shared.module';
 import { FormComponent } from './components/form/form.component';
 import { ResultNumbersModule } from '../shared/components/result-numbers/result-numbers.module';
 import { TitleComponent } from '../shared/components/title/title.component';
+import { ResultDataModule } from '../shared/components/result-data/result-data.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TitleComponent } from '../shared/components/title/title.component';
     CommonModule,
     InvestmentRoutingModule,
     FormMatSharedModule,
-    ResultNumbersModule
+    ResultNumbersModule,
+    ResultDataModule
   ]
 })
 export class InvestmentModule { }

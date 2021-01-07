@@ -49,6 +49,7 @@ namespace Calculator.API.Service
                     startPrincipal,
                     endPrincipal,
                     interest,
+                    response.TotalInterest,
                     tax                   
                 );
 
@@ -98,6 +99,7 @@ namespace Calculator.API.Service
                     startPrincipal,
                     endPrincipal,
                     interest,
+                    response.TotalInterest,
                     0                   
                 );
 

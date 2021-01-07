@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -6,17 +6,24 @@ import * as Highcharts from 'highcharts';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnInit, OnChanges{
   Highcharts = Highcharts;
   chartOptions!: {};
 
-  @Input() principal: number = 0;
-  @Input() interest: number = 0;
+  @Input() name1!: string;
+  @Input() value1: number = 0;
+  @Input() color1!: string;
+  @Input() name2!: string;
+  @Input() value2: number = 0;
+  @Input() color2!: string;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.createPieChart();
+  }
+
+  ngOnInit(): void {
   }
 
   createPieChart(){
@@ -57,16 +64,16 @@ export class PieChartComponent implements OnInit {
       colorByPoint: true,
       data: [
         {
-          name: 'Principal',
-          y: this.principal,
+          name: this.name1,
+          y: this.value1,
           sliced: true,
           selected: true,
-          color: '#001f3f'
+          color: this.color1
         }, 
         {
-          name: 'Interest',
-          y: this.interest,
-          color: '#de6006'
+          name: this.name2,
+          y: this.value2,
+          color: this.color2
         }
       ] 
     }],

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ResponseBase } from '../../models';
 
 @Component({
   selector: 'app-result-numbers',
@@ -8,12 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ResultNumbersComponent implements OnInit {
   
   @Input() type:string = 'investement';
-  @Input() results: any = undefined;
+  @Input() results!: ResponseBase;
 
   constructor() { }
 
   ngOnInit(): void {
-  
   }
 
 }

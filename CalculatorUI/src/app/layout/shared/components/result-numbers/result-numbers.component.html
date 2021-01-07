@@ -34,10 +34,19 @@
                     </tbody>
                 </table>
             </div>
-            <div class="results-pie">
-                <app-pie-chart *ngIf="results.endBalance !== 0" [principal]="results.startPrincipal + results.totalContribution" [interest]="results.totalInterest"></app-pie-chart>
+            
+        </div>
+
+        <div class="results-pies">
+            <div class="pie1">
+                <app-pie-chart *ngIf="results.endBalance !== 0" [name1]="'Principal'" [value1]="results.startPrincipal + results.totalContribution" [color1]="'#001f3f'"
+                [name2]="'Interest'" [value2]="results.totalInterest" [color2]="'#de6006'"></app-pie-chart>
+            </div>
+            <div class="pie2">
+                <app-pie-chart *ngIf="results.endBalance !== 0" [name1]="'Balance'" [value1]="results.endBalance" [color1]="'#111111'"
+                [name2]="'Interest'" [value2]="results.totalInterest" [color2]="'#2ECC40'"></app-pie-chart>
             </div>
         </div>
-        
+
     </mat-card-content>
 </mat-card>

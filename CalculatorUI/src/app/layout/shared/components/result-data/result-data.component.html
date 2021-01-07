@@ -1,0 +1,9 @@
+<mat-card class="custom-style">
+    <mat-card-header>
+        <mat-card-title>Data Visualizer</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-line-chart *ngIf="dataList.length > 0" [data]="dataList"></app-line-chart>
+
+    </mat-card-content>
+</mat-card>

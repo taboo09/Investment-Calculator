@@ -1,6 +1,7 @@
 .container-investment{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1rem;
 
     .investment-title{
         grid-column: 1 / 4;
@@ -14,7 +15,11 @@
 
     .results{
         grid-column: 2 / 4;
-        background-color: burlywood;
+    }
+
+    .investment-data{
+        grid-column: 1 / 4;
+        margin-top: 1rem;
     }
 
     @media only screen and (max-width: 650px){
@@ -38,4 +43,3 @@
         }
     }
 }
-

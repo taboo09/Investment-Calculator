@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../core/services/app.service';
+import { InterestSchedule } from '../shared/models/InterestSchedule';
 import { Investment, InvestmentRes, Period } from './models';
 
 @Component({
@@ -13,6 +14,7 @@ export class InvestmentComponent implements OnInit {
   // change to any for a reuseable component
   newInvestment!: Investment;
   results!: InvestmentRes;
+  interestSchedule: InterestSchedule[] = [];
 
   constructor(private fb: FormBuilder,
               private appService: AppService) { }
@@ -23,7 +25,7 @@ export class InvestmentComponent implements OnInit {
       PeriodYears: 0,
       InterestRate: 0,
       ContributionValue: 0,
-      PeriodInvestment: 0
+      PeriodInvestment: 1
     };
 
     this.results = {
@@ -42,16 +44,25 @@ export class InvestmentComponent implements OnInit {
     if(investment.PeriodInvestment === Period.Month) {
       this.appService.getRresults('investment', investment)
         .subscribe(results => {
-
-          this.results = results;
+          this.createObjects(results);
         })
     }
     else {
       this.appService.getRresults('interest', investment)
         .subscribe(results => {
-
-          this.results = results;
+          this.createObjects(results);
         })
     }
+  }
+
+  private createObjects(results: any){
+    this.results.endBalance = results.endBalance;
+    this.results.startPrincipal = results.startPrincipal;
+    this.results.totalContribution = results.totalContribution;
+    this.results.totalInterest = results.totalInterest;
+    this.results.totalTax = results.totalTax;
+    this.results.inflationAdjustment = results.inflationAdjustment;
+
+    this.interestSchedule = results.interestSchedule;
   }
 }

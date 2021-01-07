@@ -4,5 +4,6 @@ export class InterestSchedule {
     StartPrincipal!: number;
     EndPrincipal!: number;
     Interest!: number;
+    TotalInterest!: number;
     Tax!: number;
 }
