@@ -19,6 +19,23 @@ mat-card{
                     }
                     td{
                         text-align: right;
+                        font-weight: 600;
+                    }
+
+                    &:nth-child(1) td{
+                        color:#ad2c6b;
+                    }
+                    &:nth-child(2) td{
+                        color:#111111;
+                    }
+                    &:nth-child(3) td{
+                        color:#111111;
+                    }
+                    &:nth-child(4) td{
+                        color:#FF4136;
+                    }
+                    &:nth-child(5) td{
+                        color:#3a2180;
                     }
                 }
             }

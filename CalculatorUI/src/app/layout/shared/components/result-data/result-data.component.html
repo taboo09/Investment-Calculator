@@ -3,7 +3,8 @@
         <mat-card-title>Data Visualizer</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+        <h4 *ngIf="dataList.length === 0">You can easily generate eye-catching visual reports that are based on your submission data.</h4>
         <app-line-chart *ngIf="dataList.length > 0" [data]="dataList"></app-line-chart>
-
+        <app-table *ngIf="dataList.length > 0" [data]="dataList" [type]="'investment'"></app-table>
     </mat-card-content>
 </mat-card>

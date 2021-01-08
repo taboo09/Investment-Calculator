@@ -4,6 +4,7 @@ import { ResultDataComponent } from './result-data.component';
 import { TableComponent } from './components/table/table.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     CommonModule,
     MatCardModule,
+    MatTableModule,
     HighchartsChartModule
   ],
   exports: [ResultDataComponent]
