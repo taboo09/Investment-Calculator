@@ -1,0 +1,20 @@
+.overflowY{
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #013d79 #ffffff;
+}
+
+/* scrollbar for Chrome */
+.overflowY::-webkit-scrollbar{
+    width: 4px;
+    background: #ffffff;
+    border-radius: 4px;
+}
+.overflowY::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #013d79;
+}
+.overflowY::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background: #ffffff;
+}
