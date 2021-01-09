@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AppService } from '../layout/core/services/app.service';
 
 const yearStart: number = 2021;
 
@@ -9,18 +10,24 @@ const yearStart: number = 2021;
 })
 export class FooterComponent implements OnInit {
   period: string = '';
+  version = '';
 
-  @Input() version: string | undefined;
-
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit(): void {
-    this.version = '1.0.0';
+    this.getAppVersion();
   }
 
   setPeriod(){
     const yearNow = new Date().getFullYear();
 
     return yearNow > yearStart ? yearStart + ' - ' + yearNow : yearStart;
+  }
+
+  getAppVersion(){
+    this.appService.getAppVersion()
+      .subscribe(version => {
+        this.version = version.appVersion;
+      })
   }
 }
