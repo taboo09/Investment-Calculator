@@ -14,4 +14,26 @@ html, body {
 body { 
     margin: 0; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Highcharts Overflow-X */
+highcharts-chart{
+    .highcharts-scrolling-parent .highcharts-scrolling {
+        overflow-x: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #013d79 #ffffff;
+    }
+    .highcharts-scrolling-parent .highcharts-scrolling::-webkit-scrollbar{
+        height: 4px;
+        background: #ffffff;
+    }
+    .highcharts-scrolling-parent .highcharts-scrolling::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: linear-gradient(to left, #FF4136, #013d79);
+    }
+    .highcharts-scrolling-parent .highcharts-scrolling::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background: #ffffff;
+    }
 }
