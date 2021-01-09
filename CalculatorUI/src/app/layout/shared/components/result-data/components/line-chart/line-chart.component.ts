@@ -15,7 +15,7 @@ export class LineChartComponent implements OnInit, OnChanges {
   principal: number[] = [];
   xIndexes: number[] = [];
 
-  plotWidth: number = 0;
+  minPlotWidth: number = 600;
 
   @Input() data:any[] = [];
 
@@ -23,14 +23,14 @@ export class LineChartComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.createArrays();
-    // this.setPlotWidth();
-    this.createPieChart();
+    this.setPlotWidth();
+    this.createChart();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.createArrays();
-    // this.setPlotWidth();
-    this.createPieChart();    
+    this.setPlotWidth();
+    this.createChart();
   }
 
   createArrays(){
@@ -41,18 +41,19 @@ export class LineChartComponent implements OnInit, OnChanges {
     this.xIndexes = Array.from(Array(this.data.length), (_,x) => x + 1);
   }
 
-  // setPlotWidth() {
-  //   var x = this.data.length;
-  //   this.plotWidth = x <= 8 ? 700 : x <= 10 ? 900 : x;
-  // }
+  setPlotWidth() {
+    var x = this.data.length;
+    // this.minPlotWidth = x <= 40 ? this.minPlotWidth : x >= 80 ? 1100 : 600 + ((x - 45) * 8);
+    this.minPlotWidth = x <= 40 ? this.minPlotWidth : 600 + ((x - 45) * 8);
+  }
 
-  createPieChart() {
+  createChart() {
     this.chartOptions = {
 
     chart: {
       type: 'line',
       scrollablePlotArea: {
-        minWidth: 700
+        minWidth: this.minPlotWidth
       }
     },
 
@@ -152,6 +153,3 @@ export class LineChartComponent implements OnInit, OnChanges {
   }
 
 }
-
-
-// Xoverflow

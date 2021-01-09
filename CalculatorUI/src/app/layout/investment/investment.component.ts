@@ -15,6 +15,7 @@ export class InvestmentComponent implements OnInit {
   newInvestment!: Investment;
   results!: InvestmentRes;
   interestSchedule: InterestSchedule[] = [];
+  period: string = '';
 
   constructor(private fb: FormBuilder,
               private appService: AppService) { }
@@ -40,7 +41,8 @@ export class InvestmentComponent implements OnInit {
   }
 
   getFormValues(investment: Investment){
-
+    this.period = Period[investment.PeriodInvestment];
+    
     if(investment.PeriodInvestment === Period.Month) {
       this.appService.getRresults('investment', investment)
         .subscribe(results => {

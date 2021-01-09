@@ -12,6 +12,8 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() type: string = '';
   @Input() data:any[] = [];
 
+  @Input() isMonthly: boolean = false;
+
   displayedColumns: string[] = ['index', 'startPrincipal', 'startBalance', 'interest', 'endBalance', 'endPrincipal'];
 
   constructor() { }
@@ -39,6 +41,10 @@ export class TableComponent implements OnInit, OnChanges {
       default:
         break;
     }
+  }
+
+  isItMonthly(x: number){
+    return this.isMonthly && x % 12 === 0;
   }
 
 }
