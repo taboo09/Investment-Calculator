@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         } else {
             messageError = {
-              MessageInfo: error.message.toString(),
+              MessageInfo: error.status === 0 ? 'server error' : error.error.toString(),
               ErrorStatus: error.status,
               Notification: NotificationType.Error
             };
