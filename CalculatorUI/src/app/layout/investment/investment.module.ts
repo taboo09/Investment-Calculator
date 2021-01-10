@@ -8,6 +8,7 @@ import { FormComponent } from './components/form/form.component';
 import { ResultNumbersModule } from '../shared/components/result-numbers/result-numbers.module';
 import { TitleComponent } from '../shared/components/title/title.component';
 import { ResultDataModule } from '../shared/components/result-data/result-data.module';
+import { LoadingOverlayModule } from 'src/app/shared/modules/loading-overlay/loading-overlay.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ResultDataModule } from '../shared/components/result-data/result-data.m
     InvestmentRoutingModule,
     FormMatSharedModule,
     ResultNumbersModule,
-    ResultDataModule
+    ResultDataModule,
+    LoadingOverlayModule
   ]
 })
 export class InvestmentModule { }

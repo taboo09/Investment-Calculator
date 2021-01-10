@@ -16,6 +16,7 @@ export class InvestmentComponent implements OnInit {
   results!: InvestmentRes;
   interestSchedule: InterestSchedule[] = [];
   period: string = '';
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private appService: AppService) { }
@@ -41,18 +42,25 @@ export class InvestmentComponent implements OnInit {
   }
 
   getFormValues(investment: Investment){
+    this.loading = true;
     this.period = Period[investment.PeriodInvestment];
     
     if(investment.PeriodInvestment === Period.Month) {
       this.appService.getRresults('investment', investment)
         .subscribe(results => {
           this.createObjects(results);
+          this.loading = false;
+        }, error => {
+          this.loading = false;
         })
     }
     else {
       this.appService.getRresults('interest', investment)
         .subscribe(results => {
           this.createObjects(results);
+          this.loading = false;
+        }, error => {
+          this.loading = false;
         })
     }
   }
