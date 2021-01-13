@@ -1,0 +1,32 @@
+form{
+    width: 100%;
+    padding-top: 10px;
+
+    & > *{
+        display: block;
+        max-width: 200px;
+    }
+
+    .form-element{
+        & > *{
+            margin: 5px 0;
+        }
+
+        mat-radio-group{
+            margin-top: 20px;
+
+            mat-radio-button:nth-child(2){
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .form-select{
+        margin-top: 20px;
+    }
+
+    button{
+        margin: 20px 0;
+        width: 100%
+    }
+}

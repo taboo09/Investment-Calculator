@@ -1,0 +1,53 @@
+<mat-card class="custom-style">
+    <mat-card-header>
+        <mat-card-title>Values</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="interestForm">
+
+            <mat-form-field>
+                <mat-label>Starting Amount</mat-label>
+                <input matInput formControlName="startPrincipal" required type="number" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Additional Contribution</mat-label>
+                <input matInput formControlName="contribution" required type="number" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Years</mat-label>
+                <input matInput formControlName="periodYears" required type="number" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Return Rate %</mat-label>
+                <input matInput formControlName="interestRate" required type="number" />
+            </mat-form-field>
+            <div class="form-element">
+                <label class="d-block">Contribution Period:</label>
+                <mat-radio-group aria-label="Period" formControlName="interestPeriod">
+                    <mat-radio-button class="font-small" [value]=0>Beginning</mat-radio-button>
+                    <mat-radio-button class="font-small" [value]=1>End</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            
+            <mat-form-field class="form-select">
+                <mat-label>Compound Period</mat-label>
+                <mat-select formControlName="compoundPeriod">
+                  <mat-option *ngFor="let period of compoundPeriodList" [value]="period.value">{{ period.title }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Inflation Rate</mat-label>
+                <input matInput formControlName="inflationRate" required type="number" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Tax Rate</mat-label>
+                <input matInput formControlName="taxRate" required type="number" />
+            </mat-form-field>
+        
+            <button mat-flat-button color="primary" type="submit" (click)="getResults(interestForm.value)"
+                [disabled]="!interestForm.valid || !interestForm.touched">Calculate</button>
+        
+        </form>
+    </mat-card-content>
+</mat-card>
