@@ -5,12 +5,12 @@
     <div class="interest-form">
         <app-form [interestModel]="newInterestModel" (formValues)="getFormValues($event)"></app-form>
     </div>
-    <!-- <div class="results">
+    <div class="results">
         <app-result-numbers [type]="type" [results]="results"></app-result-numbers>
     </div>
     <div class="interest-data">
-        <app-result-data [period]="period" [dataList]="interestSchedule"></app-result-data>
-    </div> -->
+        <app-result-data [period]="period" [type]="'interest'" [dataList]="interestSchedule"></app-result-data>
+    </div>
 </div>
 
 <app-loading-overlay *ngIf="loading"></app-loading-overlay>

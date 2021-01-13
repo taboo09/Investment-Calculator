@@ -10,6 +10,7 @@ export class ResultDataComponent implements OnInit, OnChanges {
 
   @Input() dataList: InterestSchedule[] = [];
   @Input() period: string = '';
+  @Input() type: string = '';
 
   chartData: InterestSchedule[] = [];
 

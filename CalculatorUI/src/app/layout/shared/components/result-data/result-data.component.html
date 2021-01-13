@@ -7,7 +7,7 @@
 
         <app-line-chart *ngIf="dataList.length > 0" [data]="chartData"></app-line-chart>
         
-        <app-table *ngIf="dataList.length > 0" [data]="dataList" [type]="'investment'" [isMonthly]="period === 'Month'"></app-table>
+        <app-table *ngIf="dataList.length > 0" [data]="dataList" [type]="type" [isMonthly]="period === 'Month'"></app-table>
 
     </mat-card-content>
 </mat-card>

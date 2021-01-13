@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InterestModel } from './models';
+import { AppService } from '../core/services/app.service';
+import { InterestSchedule } from '../shared/models/InterestSchedule';
+import { InterestModel, InterestRes } from './models';
 
 @Component({
   selector: 'app-interest',
@@ -9,8 +11,12 @@ import { InterestModel } from './models';
 export class InterestComponent implements OnInit {
   newInterestModel!: InterestModel;
   loading: boolean = false;
+  type: string = 'interest';
+  results!: InterestRes;
+  interestSchedule: InterestSchedule[] = [];
+  period = 'Annually';
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit(): void {
     this.newInterestModel = {
@@ -23,10 +29,40 @@ export class InterestComponent implements OnInit {
       InflationRate: 0,
       TaxRate: 0
     }
+
+    this.results = {
+      endBalance: 0,
+      startPrincipal: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+      totalTax: 0,
+      inflationAdjustment: 0,
+      interestSchedule: []
+    }
   }
 
   getFormValues(interestModel: InterestModel){
-    console.log(interestModel)
+    this.loading = true;
+
+    this.appService.getRresults('interest', interestModel)
+      .subscribe(results => {
+        this.createObjects(results);
+
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+      })
+  }
+
+  private createObjects(results: any){
+    this.results.endBalance = results.endBalance;
+    this.results.startPrincipal = results.startPrincipal;
+    this.results.totalContribution = results.totalContribution;
+    this.results.totalInterest = results.totalInterest;
+    this.results.totalTax = results.totalTax;
+    this.results.inflationAdjustment = results.inflationAdjustment;
+
+    this.interestSchedule = results.interestSchedule;
   }
 
 }

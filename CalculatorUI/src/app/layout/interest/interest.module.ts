@@ -8,6 +8,8 @@ import { FormMatSharedModule } from '../core/form-mat-shared.module';
 import { TitleModule } from '../shared/components/title/title.module';
 import { LoadingOverlayModule } from 'src/app/shared/modules/loading-overlay/loading-overlay.module';
 import {MatSelectModule} from '@angular/material/select';
+import { ResultNumbersModule } from '../shared/components/result-numbers/result-numbers.module';
+import { ResultDataModule } from '../shared/components/result-data/result-data.module';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import {MatSelectModule} from '@angular/material/select';
     FormMatSharedModule,
     TitleModule,
     LoadingOverlayModule,
+    ResultNumbersModule,
+    ResultDataModule,
     MatSelectModule
   ]
 })
