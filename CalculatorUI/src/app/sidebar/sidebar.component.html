@@ -1,19 +1,10 @@
 <nav class="sidebar">
     <div class="list-group">
-        <!-- <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fas fa-tachometer-alt"></i>
-            <span>Home</span>
-        </a>
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span>Dashboard</span>
-        </a> -->
-
-        <a class="list-group-item" [routerLinkActive]="['router-link-active']" *ngFor="let item of menu" 
+        <a class="list-group-item" *ngFor="let item of menu" 
             matTooltip="{{ item.title }}" matTooltipClass="tooltip-custom" matTooltipPosition="right"
-            (click)="routerNavigator(item.link)">
+            routerLink="/{{item.link}}" routerLinkActive="is-active"
+            [ngStyle]="{ 'border-left-color': item.color }">
             <i class="fas {{ item.icon }}"></i>
         </a>
-
     </div>
 </nav>

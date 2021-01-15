@@ -33,15 +33,16 @@ $darkturquoise: rgb(0,206,209);
             font-size: 24px;
             padding: 10px;
             margin: 10px 0;
+            border: none;
         }
         a:hover {
-            // background: darken($nav-background-left-color, 5%);
-            // color: darken($nav-background-left-color, 15%);
             color: $darkturquoise;
         }
-        a.router-link-active {
-            background: darken($nav-background-left-color, 25%);
-            color: #fff;
+
+        a.is-active{
+            color: $darkturquoise;
+            border-left: 3px solid;
+            padding-left: 7px;
         }
     }
 }

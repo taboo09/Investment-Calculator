@@ -15,8 +15,5 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.menu = menu;
   }
-
-  routerNavigator(link: string){
-    this.router.navigate(['/' + link]);
-  }
+  
 }
