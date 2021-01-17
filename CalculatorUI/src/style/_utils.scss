@@ -12,3 +12,11 @@
 .font-small{
     font-size: .8em !important;
 }
+
+.row{
+    width: 100%;
+    margin: 2rem 0;
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+}

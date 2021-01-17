@@ -1,14 +1,28 @@
-<div>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
-    <h1>Home Works</h1>
+<div class="row">
+    <div #pic class="pic gradient-circle">
+        <i class="fas fa-calculator" [ngStyle]="{ 'font-size': font_size + 'px' }"></i>
+    </div>
+    <div class="title gradient-left">
+        <span *ngFor="let letter of title_arr" [ngStyle]="{ 'font-size': letter.font + 'em' }">
+            {{ letter.char }}
+        </span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="list-container">
+        <div class="title-wrapper border-style">
+            <ul>
+                <li *ngFor="let item of menu" >
+                    <i class="fas {{ item.icon }}" [ngStyle]="{ 'color': item.color }" (click)="selectItem(item.index)"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="description-container">
+        <div class="description">
+            <h3>{{ selected_title }}</h3>
+            <p>{{ selected_desc }}</p>
+        </div>
+    </div>
 </div>
