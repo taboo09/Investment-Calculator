@@ -1,1 +1,22 @@
-<p>history works!</p>
+<div class="container-4cols">
+    <div class="container-title">
+        <app-title [title]="'historical comparation'"></app-title>
+    </div>
+    <div class="container-form">
+        <!-- <app-form [investment]="newInvestment" (formValues)="getFormValues($event)"></app-form> -->
+    </div>
+    <div class="results">
+        <!-- <app-result-numbers [type]="type" [results]="results"></app-result-numbers> -->
+    </div>
+    <div class="container-data">
+        <!-- <app-result-data [period]="period" [type]="'investment'" [dataList]="interestSchedule"></app-result-data> -->
+    </div>
+</div>
+
+<app-loading-overlay *ngIf="loading"></app-loading-overlay>
+
+<p>upload file section</p>
+<p>chose data</p>
+<p>chose range data and initial value</p>
+<p>chart area</p>
+<p>table area</p>

@@ -1,14 +1,14 @@
-<div class="container-interest">
-    <div class="interest-title">
+<div class="container-4cols">
+    <div class="container-title">
         <app-title [title]="'interest calculator'"></app-title>
     </div>
-    <div class="interest-form">
+    <div class="container-form">
         <app-form [interestModel]="newInterestModel" (formValues)="getFormValues($event)"></app-form>
     </div>
     <div class="results">
         <app-result-numbers [type]="type" [results]="results"></app-result-numbers>
     </div>
-    <div class="interest-data">
+    <div class="container-data">
         <app-result-data [period]="period" [type]="'interest'" [dataList]="interestSchedule"></app-result-data>
     </div>
 </div>
