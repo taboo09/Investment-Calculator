@@ -1,0 +1,49 @@
+<mat-card class="custom-style">
+    <mat-card-header>
+        <mat-card-title>File Upload</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        
+        <i class="far fa-question-circle info" 
+            [popover]="infoPopover"
+            popoverPlacement="bottom right"
+            [popoverOnHover]="false"></i>
+
+        <popover-content #infoPopover 
+                    title="File Info" 
+                    [animation]="true" 
+                    [closeOnClickOutside]="true">
+                <ng-container *ngTemplateOutlet="popoverHtml;context:exts"></ng-container>
+        </popover-content>
+
+        <mat-form-field>
+            <mat-label>{{ file === '' ? 'Choose File' : 'File to be uploaded' }}</mat-label>
+            <input matInput [value]="file" readonly (click)="fileUpload.click()" />
+            <mat-hint *ngIf="upload_error">
+                Error: File cannot be empty!
+            </mat-hint>
+        </mat-form-field>
+
+        <div class="file-buttons" *ngIf="file !== ''">
+            <button mat-mini-fab color="primary" (click)="uploadFile()"
+                matTooltip="Upload File" matTooltipClass="tooltip-custom" matTooltipPosition="below">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </button>
+            <button mat-mini-fab color="warn" (click)="removeFile()"
+                matTooltip="Remove File" matTooltipClass="tooltip-custom" matTooltipPosition="right">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+
+        <input #fileUpload [hidden]="true" type="file" (change)="fileChange($event)" 
+            placeholder="Upload file" accept=".xlsx, .xls, .csv, application/json">
+
+    </mat-card-content>
+</mat-card>
+
+<ng-template #popoverHtml let-extensions="extensions">
+    <p>Accepted Extensions:</p>
+    <ul>
+        <li *ngFor="let item of extensions">{{item}}</li>
+    </ul>
+</ng-template>

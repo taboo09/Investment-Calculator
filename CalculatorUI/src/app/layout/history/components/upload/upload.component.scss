@@ -1,0 +1,32 @@
+mat-card-content{
+    .info{
+        margin: 15px 0 5px 0;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color:steelblue;
+    }
+
+    mat-form-field{
+        margin: 15px 0;
+        width: 100%;
+        font-family: 'Kalam', cursive;
+
+        mat-hint{
+            color:orange;
+        }
+    }
+
+    .file-buttons{
+        width: 100%;
+        margin-bottom: 20px;
+
+        & > *{
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+.popover-body{
+    padding-top: 0;
+    padding-bottom: 0;
+}

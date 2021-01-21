@@ -32,7 +32,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/style/styles.scss"
+              "src/style/styles.scss",
+              "src/style/kalam-font.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
