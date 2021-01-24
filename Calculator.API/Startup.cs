@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +33,7 @@ namespace Calculator.API
                 });
 
             services.AddScoped<ICalculator, InterestCalculator>();
+            services.AddScoped<IDataService, DataService>();
 
             AddCors(services);
         }

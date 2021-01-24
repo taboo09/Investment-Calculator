@@ -6,3 +6,5 @@
 **/wwwroot
 
 **/electron.manifest.json
+
+**/*.db
