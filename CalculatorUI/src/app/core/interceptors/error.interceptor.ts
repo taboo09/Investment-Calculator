@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         } else {
             messageError = {
-              MessageInfo: error.status === 0 ? 'server error' : error.error.toString(),
+              MessageInfo: createMessage(error),
               ErrorStatus: error.status,
               Notification: NotificationType.Error
             };
@@ -51,3 +51,9 @@ export const ErrorInterceptorProvider = {
   useClass: ErrorInterceptor,
   multi: true
 };
+
+function createMessage(error: HttpErrorResponse){
+  return error.status === 0 ? 'Server Error' : 
+    error.status === 500 && error.error.toString().includes('Microsoft.Data.Sqlite.SqliteException') ? 'Database Error' :  
+    error.error.toString()
+}
