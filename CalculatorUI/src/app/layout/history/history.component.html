@@ -3,7 +3,7 @@
         <app-title [title]="'historical comparation'"></app-title>
     </div>
     <div class="container-form">
-        <!-- <app-form [investment]="newInvestment" (formValues)="getFormValues($event)"></app-form> -->
+        <app-upload #upload (fileUploaded)="fileUploaded($event)"></app-upload>
     </div>
     <div class="results">
         <!-- <app-result-numbers [type]="type" [results]="results"></app-result-numbers> -->
@@ -14,9 +14,3 @@
 </div>
 
 <app-loading-overlay *ngIf="loading"></app-loading-overlay>
-
-<p>upload file section</p>
-<p>chose data</p>
-<p>chose range data and initial value</p>
-<p>chart area</p>
-<p>table area</p>
