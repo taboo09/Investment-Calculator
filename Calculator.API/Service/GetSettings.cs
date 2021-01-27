@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Calculator.API.Service
 {
-    public static class GetConnectionString
+    public static class GetSettings
     {
         public static string ConnectionString()
         {

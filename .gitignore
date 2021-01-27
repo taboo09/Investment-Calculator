@@ -8,3 +8,5 @@
 **/electron.manifest.json
 
 **/*.db
+
+files/

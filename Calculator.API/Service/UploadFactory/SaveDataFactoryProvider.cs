@@ -13,11 +13,13 @@ namespace Calculator.API.Service.UploadFactory
             {
                 case "XLSX":
                 case "XLS":
+                    instance = (ISaveData)Activator.CreateInstance(typeof(ReadDataExcel));
+                    break;
                 case "CSV":
-                    instance = (ISaveData)Activator.CreateInstance(typeof(SaveDataExcel));
+                    instance = (ISaveData)Activator.CreateInstance(typeof(ReadDataCSV));
                     break;
                 case "JSON":
-                    instance = (ISaveData)Activator.CreateInstance(typeof(SaveDataJSON));
+                    instance = (ISaveData)Activator.CreateInstance(typeof(ReadDataJSON));
                     break;
                 default:
                     instance = null;

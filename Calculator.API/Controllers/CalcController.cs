@@ -48,7 +48,9 @@ namespace Calculator.API.Controllers
 
             var fileId = await _dataService.SaveFileInfo(infoFile);
 
-            await _dataService.SaveFile(file, infoFile.Extension, fileId);
+            var marketDataList = _dataService.ReadFile(file, infoFile.Extension, fileId);
+
+            await _dataService.SaveFileInfo(marketDataList);
 
             return Ok(new { message = "File has been successfully saved" });
         }

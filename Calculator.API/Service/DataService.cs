@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Calculator.API.Models;
 using Calculator.API.Service.Interfaces;
@@ -15,7 +16,7 @@ namespace Calculator.API.Service
 
         public DataService()
         {
-            _connectionString = GetConnectionString.ConnectionString();
+            _connectionString = GetSettings.ConnectionString();
         }
 
         public async Task<int> SaveFileInfo(FileInformation info)
@@ -36,11 +37,28 @@ namespace Calculator.API.Service
             }
         }
 
-        public async Task SaveFile(IFormFile file, string ext, int fileId)
+        public IEnumerable<MarketData> ReadFile(IFormFile file, string ext, int fileId)
         {
             var saveDataInstance = SaveDataFactoryProvider.CreateFactoryFor(ext);
 
-            await saveDataInstance.SaveData(file, fileId);
+            return saveDataInstance.ReadData(file, fileId);
+        }
+
+        public async Task SaveFileInfo(IEnumerable<MarketData> marketDataList)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql_insert = @"INSERT INTO Market_Data (FileId, Date, Price)
+                VALUES (@FileId, @Date, @Price)";
+            
+            try
+            {
+                await connection.ExecuteAsync(sql_insert, marketDataList);
+            }
+            catch (SqliteException)
+            {
+                throw new SqliteException("Database Error", 1);
+            }
         }
     }
 }
