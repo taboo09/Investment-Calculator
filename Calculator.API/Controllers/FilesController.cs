@@ -55,6 +55,14 @@ namespace Calculator.API.Controllers
             return Ok(new { message = "File and its data has been successfully removed." });
         }
 
+        [HttpGet("data")]
+        public async Task<IActionResult> GetFileData(int fileId)
+        {
+            var fileData = await _dataService.RetrieveFileData(fileId);
+
+            return Ok(fileData);
+        }
+
         private (int, int) Validate(int size, int start)
         {
             // size cannot be greater than 10 or less than 5

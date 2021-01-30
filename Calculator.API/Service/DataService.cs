@@ -98,10 +98,30 @@ namespace Calculator.API.Service
             {
                 await connection.ExecuteAsync(sql, new { FileId = fileId });
             }
-            catch (SqliteException ex)
+            catch (SqliteException)
             {
                 throw new SqliteException("Database Error", 1);
             }
+        }
+
+        public async Task<IEnumerable<MarketDataFromDb>> RetrieveFileData(int fileId)
+        {
+            IEnumerable<MarketDataFromDb> marketDataList;
+
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = @"Select Date, Price From Market_Data Where FileId = @FileId";
+
+            try
+            {
+                marketDataList = await connection.QueryAsync<MarketDataFromDb>(sql, new { FileId = fileId });
+            }
+            catch (SqliteException)
+            {
+                throw new SqliteException("Database Error", 1);
+            }
+
+            return marketDataList;
         }
     }
 }

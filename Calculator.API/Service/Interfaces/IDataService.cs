@@ -12,5 +12,6 @@ namespace Calculator.API.Service.Interfaces
         Task SaveFileInfo(IEnumerable<MarketData> marketDataList);
         Task<IEnumerable<FileFromDb>> RetrieveFiles(int start, int size);
         Task DeleteFile(int fileId);
+        Task<IEnumerable<MarketDataFromDb>> RetrieveFileData(int fileId);
     }
 }
