@@ -179,7 +179,14 @@
     display: none;
   }
   
-  .popover-body {
-    padding: 0 0.75rem;
-    color: #212529;
-  }
+  // .popover-body {
+  //   padding: 0 0.75rem;
+  //   color: #212529;
+  // }
+
+/* Popover custom settings */
+.popover-body{
+  padding: 0 0.75rem;
+  color: #212529;
+  max-width: 250px;
+}

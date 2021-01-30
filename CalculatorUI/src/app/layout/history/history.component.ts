@@ -3,6 +3,9 @@ import { NotificationType } from 'src/app/shared/models';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { AppService } from '../core/services/app.service';
 import { UploadComponent } from './components/upload/upload.component';
+import { FileDb } from './models';
+
+const SIZE = 5;
 
 @Component({
   selector: 'app-history',
@@ -11,6 +14,7 @@ import { UploadComponent } from './components/upload/upload.component';
 })
 export class HistoryComponent implements OnInit {
   loading: boolean = false;
+  files: FileDb[] = [];
 
   @ViewChild('upload', {static: false}) upload!: UploadComponent;
 
@@ -18,6 +22,7 @@ export class HistoryComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.getFiles(0);
   }
 
   fileUploaded(file: any){
@@ -44,6 +49,18 @@ export class HistoryComponent implements OnInit {
 
       }, err => {
         console.log(err);
+        this.loading = false;
+      })
+  }
+
+  getFiles(start: number){
+    this.loading = true;
+
+    this.appService.getFiles(SIZE, start)
+      .subscribe(files => {
+        this.files = files;
+        this.loading = false;
+      }, error => {
         this.loading = false;
       })
   }

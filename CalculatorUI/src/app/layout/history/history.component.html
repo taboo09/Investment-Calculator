@@ -6,7 +6,7 @@
         <app-upload #upload (fileUploaded)="fileUploaded($event)"></app-upload>
     </div>
     <div class="results">
-        <!-- <app-result-numbers [type]="type" [results]="results"></app-result-numbers> -->
+        <app-files-info [data]="files"></app-files-info>
     </div>
     <div class="container-data">
         <!-- <app-result-data [period]="period" [type]="'investment'" [dataList]="interestSchedule"></app-result-data> -->

@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FileInfo } from '../../models';
+import { FileBase } from '../../models';
 
 const ACCEPTED_EXTENSIONS = ['xlsx', 'xls', 'csv', 'json'];
 
@@ -65,7 +65,7 @@ export class UploadComponent implements OnInit {
     this.upload_error = false;
   }
 
-  createFileInfo(formValues: any): FileInfo{
+  createFileInfo(formValues: any): FileBase{
     return {
       Filename: formValues.filename,
       Market: formValues.market,

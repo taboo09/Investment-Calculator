@@ -9,10 +9,12 @@ import { UploadComponent } from './components/upload/upload.component';
 import { FormMatSharedModule } from '../core/form-mat-shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PopoverModule } from 'ngx-smart-popover';
+import { FilesInfoComponent } from './components/files-info/files-info.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
-  declarations: [HistoryComponent, UploadComponent],
+  declarations: [HistoryComponent, UploadComponent, FilesInfoComponent],
   imports: [
     CommonModule,
     HistoryRoutingModule,
@@ -20,7 +22,8 @@ import { PopoverModule } from 'ngx-smart-popover';
     LoadingOverlayModule,
     FormMatSharedModule,
     MatTooltipModule,
-    PopoverModule
+    PopoverModule,
+    MatTableModule
   ]
 })
 export class HistoryModule { }

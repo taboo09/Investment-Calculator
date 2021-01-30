@@ -11,7 +11,6 @@ import { Investment, InvestmentRes, Period } from './models';
 })
 export class InvestmentComponent implements OnInit {
   type: string = 'investment';
-  // change to any for a reuseable component
   newInvestment!: Investment;
   results!: InvestmentRes;
   interestSchedule: InterestSchedule[] = [];

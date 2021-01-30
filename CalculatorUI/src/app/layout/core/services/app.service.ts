@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { FileDb } from '../../history/models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class AppService {
 
   upload(file: FormData) {
     return this.http.post<any>(this.baseUrl + 'files', file);  
+  }
+
+  getFiles(size: number, start: number){
+    return this.http.get<FileDb[]>(this.baseUrl + `files?size=${size}&start=${start}`);
   }
 }

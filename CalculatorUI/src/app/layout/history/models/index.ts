@@ -1,1 +1,2 @@
-export * from './fileInfo';
+export * from './fileBase';
+export * from './FileDb';
