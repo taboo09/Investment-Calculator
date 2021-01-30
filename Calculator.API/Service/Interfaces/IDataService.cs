@@ -10,5 +10,7 @@ namespace Calculator.API.Service.Interfaces
         IEnumerable<MarketData> ReadFile(IFormFile file, string ext, int fileId);
         Task<int> SaveFileInfo(FileInformation info);
         Task SaveFileInfo(IEnumerable<MarketData> marketDataList);
+        Task<IEnumerable<FileFromDb>> RetrieveFiles(int start, int size);
+        Task DeleteFile(int fileId);
     }
 }

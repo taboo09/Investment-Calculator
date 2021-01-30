@@ -41,6 +41,9 @@ namespace Calculator.API.Service
         {
             var saveDataInstance = SaveDataFactoryProvider.CreateFactoryFor(ext);
 
+            if (saveDataInstance is null) 
+                throw new ArgumentNullException($"File with extension {ext} can't be read. Please upload a file with an accepted extension.");
+
             return saveDataInstance.ReadData(file, fileId);
         }
 
@@ -56,6 +59,46 @@ namespace Calculator.API.Service
                 await connection.ExecuteAsync(sql_insert, marketDataList);
             }
             catch (SqliteException)
+            {
+                throw new SqliteException("Database Error", 1);
+            }
+        }
+
+        public async Task<IEnumerable<FileFromDb>> RetrieveFiles(int start, int size)
+        {
+            IEnumerable<FileFromDb> files = new List<FileFromDb>();
+
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = @"Select * From Files Limit @Size Offset @Start";
+
+            try
+            {
+                files = await connection.QueryAsync<FileFromDb>(sql, new 
+                { 
+                    Size = size,
+                    Start = start
+                });
+            }
+            catch (SqliteException)
+            {
+                throw new SqliteException("Database Error", 1);
+            }
+
+            return files;
+        }
+
+        public async Task DeleteFile(int fileId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = @"Delete From Files Where FileId = @FileId";
+
+            try
+            {
+                await connection.ExecuteAsync(sql, new { FileId = fileId });
+            }
+            catch (SqliteException ex)
             {
                 throw new SqliteException("Database Error", 1);
             }

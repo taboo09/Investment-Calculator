@@ -6,7 +6,6 @@ using System.Linq;
 using Calculator.API.Models;
 using Calculator.API.Service.UploadFactory.Interfaces;
 using CsvHelper;
-using CsvHelper.Configuration;
 using Microsoft.AspNetCore.Http;
 
 namespace Calculator.API.Service.UploadFactory
@@ -45,11 +44,4 @@ namespace Calculator.API.Service.UploadFactory
             }
         }
     }
-
-    public sealed class MarketDataMap: ClassMap<MarketData> {  
-        public MarketDataMap() {  
-            Map(x => x.Price).Name("Close");  
-            Map(x => x.Date).Name("Date");
-        }  
-    }  
 }

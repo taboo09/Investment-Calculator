@@ -20,6 +20,6 @@ export class AppService {
   }
 
   upload(file: FormData) {
-    return this.http.post<any>(this.calcUrl + 'file', file);  
+    return this.http.post<any>(this.baseUrl + 'files', file);  
   }
 }
