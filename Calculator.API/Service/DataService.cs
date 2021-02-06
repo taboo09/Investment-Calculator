@@ -47,12 +47,26 @@ namespace Calculator.API.Service
             return saveDataInstance.ReadData(file, fileId);
         }
 
+        public IEnumerable<MarketData> SetMarketVariation(List<MarketData> marketDataList)
+        {
+            for (int i = 1; i < marketDataList.Count; i++)
+            {
+                var variation = Math.Round((marketDataList[i].Price - marketDataList[i - 1].Price) / marketDataList[i - 1].Price * 100, 2);
+
+                marketDataList[i].Variation = variation;
+            }
+
+            marketDataList[0].Variation = 0;
+
+            return marketDataList;
+        }
+
         public async Task SaveFileInfo(IEnumerable<MarketData> marketDataList)
         {
             using var connection = new SqliteConnection(_connectionString);
 
-            var sql_insert = @"INSERT INTO Market_Data (FileId, Date, Price)
-                VALUES (@FileId, @Date, @Price)";
+            var sql_insert = @"INSERT INTO Market_Data (FileId, Date, Price, Variation)
+                VALUES (@FileId, @Date, @Price, @Variation)";
             
             try
             {

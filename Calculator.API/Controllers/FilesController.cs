@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Calculator.API.Models;
 using Calculator.API.Service.Interfaces;
@@ -31,6 +32,8 @@ namespace Calculator.API.Controllers
             var fileId = await _dataService.SaveFileInfo(infoFile);
 
             var marketDataList = _dataService.ReadFile(file, infoFile.Extension, fileId);
+
+            marketDataList = _dataService.SetMarketVariation(marketDataList.ToList());
 
             await _dataService.SaveFileInfo(marketDataList);
 

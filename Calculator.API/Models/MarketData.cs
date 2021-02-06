@@ -8,5 +8,6 @@ namespace Calculator.API.Models
         public int FileId { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
+        public decimal Variation { get; set; }
     }
 }
