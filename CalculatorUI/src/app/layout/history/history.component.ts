@@ -15,6 +15,9 @@ const SIZE = 5;
 export class HistoryComponent implements OnInit {
   loading: boolean = false;
   files: FileDb[] = [];
+  start = 0;
+  prev:boolean = false;
+  next:boolean = true;
 
   @ViewChild('upload', {static: false}) upload!: UploadComponent;
 
@@ -58,11 +61,33 @@ export class HistoryComponent implements OnInit {
 
     this.appService.getFiles(SIZE, start)
       .subscribe(files => {
-        this.files = files;
-        this.loading = false;
+
+        this.files = files.length > 0 ? files : this.files;
+
+        // set next
+        this.next = files.length < 5 ? false : true;
+
+        this.loading = false;        
       }, error => {
         this.loading = false;
       })
+  }
+
+  setPage(x: number){
+    if (x === -1 && this.start > 0){
+      this.start = this.start - 5;
+      this.prev = this.start === 0 ? false : true;
+      this.getFiles(this.start);
+    } 
+    if (x === 1){
+      this.start = this.start + 5;
+      this.prev = true;
+      this.getFiles(this.start);
+    }
+  }
+
+  fileData(fileId: number){
+    console.log(fileId)
   }
 
 }

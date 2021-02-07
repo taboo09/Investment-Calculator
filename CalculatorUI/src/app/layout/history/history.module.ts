@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PopoverModule } from 'ngx-smart-popover';
 import { FilesInfoComponent } from './components/files-info/files-info.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatTableModule } from '@angular/material/table';
     FormMatSharedModule,
     MatTooltipModule,
     PopoverModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ]
 })
 export class HistoryModule { }

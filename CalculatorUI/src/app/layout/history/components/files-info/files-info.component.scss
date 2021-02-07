@@ -21,7 +21,27 @@
             .mat-cell{
                 font-size: .8em;
                 border-bottom-color: rgba(0,0,0,.06);
-            }   
+
+                i.fa-question-circle{
+                    font-size: 1.2em;
+                    cursor: pointer;
+                    color:darkred;
+                }
+
+                a.file-name{
+                    cursor: pointer;
+                    
+                    &:hover{
+                        text-decoration: underline;
+                        color: steelblue;
+                    }
+                }
+            }
         }
+    }
+
+    .pagination{
+        padding: 10px 0 0 10px;
+        color:darkviolet;
     }
 }

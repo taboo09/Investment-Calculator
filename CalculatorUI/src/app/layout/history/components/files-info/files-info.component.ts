@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -9,7 +9,13 @@ import { MatTableDataSource } from '@angular/material/table';
 export class FilesInfoComponent implements OnInit, OnChanges {
   dataSource!: MatTableDataSource<any>;
 
+  pageNumber: number = 0;
+
   @Input() data:any[] = [];
+  @Input() prev!:boolean;
+  @Input() next!:boolean;
+  @Output() page = new EventEmitter<number>();
+  @Output() fileId = new EventEmitter<number>();
 
   displayedColumns: string[] = ['index', 'fileName', 'market', 'years', 'createdAt', 'fileInfo'];
 
@@ -17,12 +23,18 @@ export class FilesInfoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource(this.data);
-
-    console.log(this.data)
   }
 
   ngOnInit(): void {
-    console.log()
   }
 
+  changePage(x: number){
+    this.pageNumber += x * 5;
+
+    this.page.emit(x);
+  }
+
+  pickFile(id: number){
+    this.fileId.emit(id);
+  }
 }

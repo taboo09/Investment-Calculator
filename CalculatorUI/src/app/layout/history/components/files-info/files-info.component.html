@@ -8,11 +8,13 @@
         
                 <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef>No</th>
-                    <td mat-cell *matCellDef="let element; let i = index">{{ [i + 1] }}</td>
+                    <td mat-cell *matCellDef="let element; let i = index">{{ [i + 1 + pageNumber] }}</td>
                 </ng-container>
                 <ng-container matColumnDef="fileName">
                     <th mat-header-cell *matHeaderCellDef>File Name</th>
-                    <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+                    <td mat-cell *matCellDef="let element"> 
+                        <a class="file-name" (click)="pickFile(element.fileId)"> {{element.filename}} </a>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="market">
                     <th mat-header-cell *matHeaderCellDef>Market</th>
@@ -30,7 +32,7 @@
                 <ng-container matColumnDef="fileInfo">
                     <th mat-header-cell *matHeaderCellDef>Info</th>
                     <td mat-cell *matCellDef="let element"> 
-                        <i class="far fa-question-circle info" 
+                        <i class="far fa-question-circle" 
                             [popover]="infoPopover"
                             popoverPlacement="left bottom"
                             [popoverOnHover]="false"></i>
@@ -47,6 +49,15 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+
+            <div class="pagination">
+                <button mat-icon-button (click)="changePage(-1)" [disabled]="!prev">
+                    <mat-icon>undo</mat-icon>
+                </button>
+                <button mat-icon-button (click)="changePage(1)" [disabled]="!next">
+                    <mat-icon>redo</mat-icon>
+                </button>
+            </div>
         </div>
 
     </mat-card-content>
